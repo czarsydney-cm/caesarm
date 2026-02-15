@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head><link rel="stylesheet" href="style.css"></head>
+<body>
+    <nav><a href="index.html">BACK</a></nav>
+    <h2>AI_LAB_EXPERIMENTAL</h2>
+    <div class="panel" style="height: 60vh; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+        <canvas id="neuralCanvas"></canvas>
+        <div style="position: absolute; text-align: center;">
+            <p class="pill">NEURAL_NET_VISUALIZER_v1</p>
+        </div>
+    </div>
+    <script>
+        const canvas = document.getElementById('neuralCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        let particles = [];
+        for(let i=0; i<50; i++) particles.push({x: Math.random()*canvas.width, y: Math.random()*canvas.height, vx: Math.random()*2-1, vy: Math.random()*2-1});
+        function draw() {
+            ctx.clearRect(0,0,canvas.width, canvas.height);
+            ctx.strokeStyle = '#dfff0033';
+            particles.forEach(p => {
+                p.x += p.vx; p.y += p.vy;
+                if(p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if(p.y < 0 || p.y > canvas.height) p.vy *= -1;
+                ctx.beginPath(); ctx.arc(p.x, p.y, 2, 0, Math.PI*2); ctx.fill();
+            });
+            requestAnimationFrame(draw);
+        }
+        draw();
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header style="margin-bottom: 50px;">
+        <h1 style="font-size: 5rem; line-height: 0.9;">CAESAR<br><span style="color: var(--neon);">MWEBEMBEZI</span></h1>
+    </header>
+
+    <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 25px;">
+        <div class="panel" style="grid-column: span 2; grid-row: span 2;">
+            <div class="scanner"></div>
+            <div class="pill">TERMINAL_ACTIVE</div>
+            <h2 id="typewriter" style="min-height: 100px; color: #aaa;"></h2>
+        </div>
+
+        <div class="panel">
+            <div class="pill">HARDWARE_STATUS</div>
+            <p>CPU_LOAD: <span id="cpu-num" style="color: var(--neon);">--</span></p>
+            <div style="width: 100%; height: 20px; border: 2px solid #333; padding: 2px;">
+                <div id="cpu-bar" style="height: 100%; background: var(--neon); width: 0%;"></div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="pill">NAV_LINKS</div>
+            <ul style="list-style: none; padding: 0;">
+                <li><a href="matrix.html" style="color:white; text-decoration:none;">> PROJECT_MATRIX</a></li>
+                <li><a href="lab.html" style="color:white; text-decoration:none;">> AI_LAB</a></li>
+                <li><a href="transmit.html" style="color:white; text-decoration:none;">> TRANSMIT</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <div>© 2026 CAESAR MWEBEMBEZI // ALL RIGHTS RESERVED.</div>
+        <div id="coords" style="color: var(--neon);">LOCATING...</div>
+        <div>BUILD_REF: 99-X // STABLE</div>
+    </footer>
+
+    <script>
+        const text = "ARCHITECTING THE FUTURE OF INDUSTRIAL INTERFACES. SYSTEMS ENGAGED. NEURAL UPLINK STABLE.";
+        let i = 0;
+        function type() { if(i < text.length) { document.getElementById('typewriter').innerHTML += text.charAt(i); i++; setTimeout(type, 40); } }
+        function updateStats() {
+            let n = Math.floor(Math.random() * 40) + 30;
+            document.getElementById('cpu-bar').style.width = n + "%";
+            document.getElementById('cpu-num').innerText = n + "%";
+        }
+        document.addEventListener('mousemove', (e) => {
+            document.getElementById('coords').innerText = `X:${e.pageX} Y:${e.pageY}`;
+        });
+        window.onload = () => { type(); setInterval(updateStats, 1500); };
+    </script>
+</body>
+</html>
